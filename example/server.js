@@ -2,10 +2,10 @@ const fastify = require('fastify')({
   logger: true
 });
 
-const fastify_piscina = require('..');
+const fastifyPiscina = require('..');
 const { resolve } = require('path');
 
-fastify.register(fastify_piscina, {
+fastify.register(fastifyPiscina, {
   // Piscina constructor options
   filename: resolve(__dirname, 'worker.js')
 });
