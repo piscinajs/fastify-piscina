@@ -1,6 +1,6 @@
 {
   "name": "fastify-piscina",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Fastify Piscina Plugin",
   "main": "./plugin.js",
   "exports": {
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "fastify-plugin": "^1.6.1",
-    "piscina": "^1.6.0"
+    "piscina": "^1.6.1"
   },
   "eslintConfig": {
     "rules": {
