@@ -1,30 +1,32 @@
-export import Piscina from 'piscina';
-import { MessagePort } from 'node';
+import Piscina from "piscina";
+import { Plugin } from "fastify";
+import { ServerResponse, IncomingMessage, Server } from "http";
+import { Http2Server, Http2ServerRequest, Http2ServerResponse } from "http2";
 
-type TransferList = MessagePort extends { postMessage(value : any, transferList : infer T) : any; } ? T : never;
+type HttpServer = Server | Http2Server;
+type HttpRequest = IncomingMessage | Http2ServerRequest;
+type HttpResponse = ServerResponse | Http2ServerResponse;
 
-interface AbortSignalEventTarget {
-  addEventListener : (name : 'abort', listener : () => void) => void;
+type PiscinaOptions = typeof Piscina extends {
+  new (options?: infer T): Piscina;
 }
-interface AbortSignalEventEmitter {
-  on : (name : 'abort', listener : () => void) => void;
-}
-type AbortSignalAny = AbortSignalEventTarget | AbortSignalEventEmitter;
+  ? T
+  : never;
 
-type RunTaskFunction = (
-  task : any,
-  transferList : TransferList,
-  filename : string | null,
-  abortSignal : AbortSignalAny | null) => Promise<any>;
+interface PiscinaPlugin
+  extends Plugin<HttpServer, HttpRequest, HttpResponse, PiscinaOptions> {}
 
-export type PiscinaOptions = typeof Piscina extends {
-  new (options? : infer T) : Piscina
-} ? T : never;
+declare const piscinaPlugin: PiscinaPlugin;
+export = piscinaPlugin;
 
 // Most importantly, use declaration merging to add the custom property to the Fastify type system
-declare module 'fastify' {
-  interface FastifyIntstance {
-    piscina: Piscina,
-    runTask: RunTaskFunction
+declare module "fastify" {
+  interface FastifyInstance<
+    HttpServer = Server,
+    HttpRequest = IncomingMessage,
+    HttpResponse = ServerResponse
+  > {
+    piscina: Piscina;
+    runTask: Piscina["runTask"];
   }
- }
+}
