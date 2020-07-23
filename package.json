@@ -4,7 +4,7 @@
   "description": "A Fastify Piscina Plugin",
   "main": "./plugin.js",
   "exports": {
-    "import": ".esm-wrapper.mjs",
+    "import": "./esm-wrapper.mjs",
     "require": "./plugin.js"
   },
   "types": "./plugin.d.ts",
