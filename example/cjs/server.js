@@ -2,7 +2,7 @@ const fastify = require('fastify')({
   logger: true
 });
 
-const fastifyPiscina = require('..');
+const fastifyPiscina = require('../..');
 const { resolve } = require('path');
 
 fastify.register(fastifyPiscina, {
