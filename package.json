@@ -1,6 +1,6 @@
 {
   "name": "fastify-piscina",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A Fastify Piscina Plugin",
   "main": "./plugin.js",
   "exports": {
@@ -28,16 +28,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^14.0.20",
-    "fastify": "^3.0.0",
-    "gen-esm-wrapper": "^1.0.0",
-    "snazzy": "^8.0.0",
-    "standardx": "^5.0.0",
-    "tap": "^14.10.7"
+    "@types/node": "^14.14.10",
+    "fastify": "^3.8.0",
+    "gen-esm-wrapper": "^1.1.1",
+    "snazzy": "^9.0.0",
+    "standardx": "^7.0.0",
+    "tap": "^14.11.0"
   },
   "dependencies": {
-    "fastify-plugin": "^2.0.0",
-    "piscina": "^1.6.3"
+    "fastify-plugin": "^3.0.0",
+    "piscina": "^2.0.0"
   },
   "eslintConfig": {
     "rules": {
