@@ -13,7 +13,7 @@ export interface FastifyPiscinaPool extends Piscina {}
 declare module "fastify" {
   interface FastifyInstance {
     piscina: FastifyPiscinaPool;
-    runTask: FastifyPiscinaPool['runTask'];
+    runTask: FastifyPiscinaPool['run'];
   }
 }
 
