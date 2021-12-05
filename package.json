@@ -11,7 +11,8 @@
   "scripts": {
     "build": "gen-esm-wrapper . esm-wrapper.mjs",
     "lint": "standardx \"**/*.{mjs,js,cjs}\" | snazzy",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "test:typescript": "tsd"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,8 @@
     "gen-esm-wrapper": "^1.1.1",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",
-    "tap": "^15.0.6"
+    "tap": "^15.0.6",
+    "tsd": "^0.19.0"
   },
   "dependencies": {
     "fastify-plugin": "^3.0.0",
@@ -52,5 +54,8 @@
       "Atomics": true
     }
   },
-  "standardx": {}
+  "standardx": {},
+  "tsd": {
+    "directory": "test/types"
+  }
 }
