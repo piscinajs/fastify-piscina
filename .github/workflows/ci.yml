@@ -1,4 +1,4 @@
-name: GitHub CI
+name: CI
 
 on: [push, pull_request]
 
@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10, 12, 14, 16, 17]
+        node-version: [12, 14, 16, 17]
         os: [ubuntu-latest, windows-latest, macos-latest]
     
     steps:
@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install
+    - name: Install dependencies
       run: |
         npm install --ignore-scripts
 
