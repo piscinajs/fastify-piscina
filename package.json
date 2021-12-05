@@ -13,7 +13,10 @@
     "lint": "standardx \"**/*.{mjs,js,cjs}\" | snazzy",
     "lint:fix": "standardx --fix",
     "prepack": "npm run build",
-    "test:typescript": "tsd"
+    "test": "npm run lint && npm run unit && npm run test:typescript",
+    "test:typescript": "tsd",
+    "unit": "tap -J test/*.test.{js,mjs}",
+    "unit:verbose": "npm run unit -- -Rspec"
   },
   "repository": {
     "type": "git",
