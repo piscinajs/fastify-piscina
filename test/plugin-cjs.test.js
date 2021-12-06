@@ -26,6 +26,19 @@ test('It should add decorators - CommonJS', async (t) => {
   await fastify.ready();
 });
 
+test('It should throw when trying to register the plugin more than once - CommonJS', (t) => {
+  t.plan(1);
+
+  const fastify = Fastify();
+  fastify
+    .register(fastifyPiscina)
+    .register(fastifyPiscina);
+
+  fastify.ready((err) => {
+    t.equal(err.message, 'fastify-piscina has already been registered');
+  });
+});
+
 test('It should be able to use `fastify.runTask()` - CommonJS', async (t) => {
   t.plan(1);
 
