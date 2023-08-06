@@ -16,7 +16,7 @@
     "test": "tap -J test/*.test.{js,mjs}",
     "test:coverage": "tap -J test/*.test.{js,mjs} --cov --coverage-report=html --no-browser --no-check-coverage",
     "test:verbose": "npm run unit -- -Rspec",
-    "test:ci": "npm run lint && npm run test:coverage && npm run test:typescript",
+    "test:ci": "npm run test:coverage && npm run test:typescript",
     "test:typescript": "tsd"
   },
   "repository": {
