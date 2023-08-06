@@ -42,8 +42,8 @@
     "tsd": "^0.19.0"
   },
   "dependencies": {
-    "fastify-plugin": "^3.0.0",
-    "piscina": "^3.1.0"
+    "fastify-plugin": "^4.5.1",
+    "piscina": "^4.1.0"
   },
   "eslintConfig": {
     "rules": {
