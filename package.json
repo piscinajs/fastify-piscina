@@ -9,14 +9,15 @@
   },
   "types": "./plugin.d.ts",
   "scripts": {
+    "prepack": "npm run build",
     "build": "gen-esm-wrapper . esm-wrapper.mjs",
     "lint": "standardx \"**/*.{mjs,js,cjs}\" | snazzy",
     "lint:fix": "standardx --fix",
-    "prepack": "npm run build",
-    "test": "npm run lint && npm run unit && npm run test:typescript",
-    "test:typescript": "tsd",
-    "unit": "tap -J test/*.test.{js,mjs}",
-    "unit:verbose": "npm run unit -- -Rspec"
+    "test": "tap -J test/*.test.{js,mjs}",
+    "test:coverage": "tap -J test/*.test.{js,mjs} --cov --coverage-report=html --no-browser --no-check-coverage",
+    "test:verbose": "npm run unit -- -Rspec",
+    "test:ci": "npm run lint && npm run test:coverage && npm run test:typescript",
+    "test:typescript": "tsd"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
   },
   "keywords": [
     "piscina",
-    "fastify"
+    "fastify",
+    "fastify-plugin"
   ],
   "author": "James M Snell <jasnell@gmail.com>",
   "contributors": [
