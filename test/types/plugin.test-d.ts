@@ -1,19 +1,21 @@
 import path from 'path';
-import Fastify from 'fastify';
+import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { expectError, expectType } from 'tsd';
 import piscinaPlugin, { FastifyPiscinaPool } from '../../plugin';
 
-const app = Fastify();
+const app: FastifyInstance = Fastify();
 
 app.register(piscinaPlugin, {
-  filename: path.join(__dirname, 'worker.js')
+  filename: path.join(__dirname, 'worker.js'),
 });
 
-app.get('/', async (request, reply) => {
+// Tsd complains for no reason
+// @ts-ignore
+app.get('/', async (_request: FastifyRequest, _reply: FastifyReply) => {
   return { hello: `world [${await app.runTask({ a: 1, b: 2 })}]` };
 });
 
-app.after(() => {
+app.ready(() => {
   expectType<FastifyPiscinaPool>(app.piscina);
   expectType<FastifyPiscinaPool['run']>(app.runTask);
 });
@@ -22,6 +24,6 @@ const appThatTriggersTypescriptErrors = Fastify();
 
 expectError(
   appThatTriggersTypescriptErrors.register(piscinaPlugin, {
-    unknownOption: 'I will trigger a typescript error'
+    unknownOption: 'I will trigger a typescript error',
   })
-)
+);

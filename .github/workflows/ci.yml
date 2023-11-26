@@ -1,28 +1,56 @@
+on:
+  push:
+    branches:
+     - current
+     - next
+     - 'v*'
+  pull_request:
+
 name: CI
 
-on: [push, pull_request]
-
 jobs:
-  test:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12, 14, 16, 17]
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: v20.x
+      - name: Install dependencies
+        run: npm install
+      - name: Check linting
+        run: npm run lint
+
+  tests:
+    needs: [lint]
+    name: Tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [16.x, 18.x, 20.x]
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: actions/cache@v3
+        id: check-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node-version }}-
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: |
-        npm install --ignore-scripts
-
-    - name: Run tests
-      run: |
-        npm run test
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests
+        run: npm run test:ci
