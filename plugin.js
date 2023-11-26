@@ -18,7 +18,7 @@ function piscinaPlugin (fastify, options, next) {
 }
 
 module.exports = fp(piscinaPlugin, {
-  fastify: '>=1.0.0',
+  fastify: '>=4.0.0',
   name,
   version
 });
