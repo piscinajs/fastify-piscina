@@ -18,7 +18,7 @@ function fastifyPiscina (fastify, options, next) {
 }
 
 const plugin = fp(fastifyPiscina, {
-  fastify: '3.x',
+  fastify: '5.x',
   name
 });
 

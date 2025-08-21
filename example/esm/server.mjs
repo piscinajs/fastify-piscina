@@ -1,5 +1,5 @@
 import { fastify } from 'fastify';
-import * as fastifyPiscina from '../../esm-wrapper.mjs';
+import * as fastifyPiscina from '../../plugin.js';
 
 const app = fastify({ logger: true });
 
