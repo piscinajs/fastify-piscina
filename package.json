@@ -61,5 +61,8 @@
   "standardx": {},
   "tsd": {
     "directory": "test/types"
+  },
+  "engines": {
+    "node": ">=20.x"
   }
 }
