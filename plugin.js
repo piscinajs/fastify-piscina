@@ -2,9 +2,9 @@
 
 const fp = require('fastify-plugin');
 const Piscina = require('piscina');
-const { name, version } = require('./package.json');
+const { name } = require('./package.json');
 
-function piscinaPlugin (fastify, options, next) {
+function fastifyPiscina (fastify, options, next) {
   if (fastify.piscina || fastify.runTask) {
     return next(new Error('fastify-piscina has already been registered'));
   }
@@ -17,8 +17,11 @@ function piscinaPlugin (fastify, options, next) {
   next();
 }
 
-module.exports = fp(piscinaPlugin, {
-  fastify: '>=4.0.0',
-  name,
-  version
+const plugin = fp(fastifyPiscina, {
+  fastify: '5.x',
+  name
 });
+
+module.exports = plugin;
+module.exports.default = plugin;
+module.exports.fastifyPiscina = plugin;

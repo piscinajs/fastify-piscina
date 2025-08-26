@@ -2,7 +2,7 @@
 
 import { test } from 'tap';
 import Fastify from 'fastify';
-import fastifyPiscina from '../esm-wrapper.mjs';
+import fastifyPiscina from '../plugin.js';
 
 test('It should add decorators - ESM', async (t) => {
   t.plan(3);
@@ -29,9 +29,7 @@ test('It should throw when trying to register the plugin more than once - ESM', 
   t.plan(1);
 
   const fastify = Fastify();
-  fastify
-    .register(fastifyPiscina)
-    .register(fastifyPiscina);
+  fastify.register(fastifyPiscina).register(fastifyPiscina);
 
   fastify.ready((err) => {
     t.equal(err.message, 'fastify-piscina has already been registered');

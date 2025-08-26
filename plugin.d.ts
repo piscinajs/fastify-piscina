@@ -1,21 +1,26 @@
 import { FastifyPluginCallback } from 'fastify';
-import Piscina from 'piscina';
+import { Piscina } from 'piscina';
 
-type PiscinaOptions = typeof Piscina extends {
-  new (options?: infer T): Piscina;
-}
-  ? T
-  : never;
+type PiscinaOptions = NonNullable<ConstructorParameters<typeof Piscina>[0]>;
 
-export interface FastifyPiscinaPool extends Piscina {}
+type FastifyPiscinaPluginType = FastifyPluginCallback<PiscinaOptions>;
 
-// Most importantly, use declaration merging to add the custom property to the Fastify type system
 declare module 'fastify' {
   interface FastifyInstance {
-    piscina: FastifyPiscinaPool;
-    runTask: FastifyPiscinaPool['run'];
+    piscina: fastifyPiscina.FastifyPiscinaPool;
+    runTask: fastifyPiscina.FastifyPiscinaRunTask;
   }
 }
 
-declare const fastifyPiscina: FastifyPluginCallback<PiscinaOptions>;
-export default fastifyPiscina;
+declare namespace fastifyPiscina {
+  export type FastifyPiscinaPool = Piscina;
+  export type FastifyPiscinaRunTask = Piscina['run'];
+
+  export type FastifyPiscinaPluginOptions = PiscinaOptions;
+
+  export const fastifyPiscina: FastifyPiscinaPluginType;
+  export { fastifyPiscina as default };
+}
+
+declare function fastifyPiscina(...params: Parameters<FastifyPiscinaPluginType>): ReturnType<FastifyPiscinaPluginType>;
+export = fastifyPiscina;
