@@ -1,5 +1,5 @@
 {
-  "name": "fastify-piscina",
+  "name": "@piscina/fastify",
   "version": "5.0.0",
   "description": "A Fastify Piscina Plugin",
   "main": "./plugin.js",
