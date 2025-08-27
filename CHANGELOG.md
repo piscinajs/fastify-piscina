@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/piscinajs/fastify-piscina/compare/v5.0.0...v6.0.0) (2025-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* namespace piscina projects
+* update plugin for fastify v5 and fix types (#15)
+
+### Features
+
+* namespace piscina projects ([4f20a28](https://github.com/piscinajs/fastify-piscina/commit/4f20a283271a02f53f27756ff4e761ebd84cc5ec))
+* update plugin for fastify v5 and fix types ([#15](https://github.com/piscinajs/fastify-piscina/issues/15)) ([c58d2d8](https://github.com/piscinajs/fastify-piscina/commit/c58d2d8257a46da4762c59966123e6acab0c7dcf))
+
 ## [5.0.0](https://github.com/piscinajs/fastify-piscina/compare/v4.0.0...v5.0.0) (2023-11-26)
 
 
