@@ -2,9 +2,15 @@ on:
   push:
     branches:
       - current
+
 name: publish
+
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
-  release-please:
+  publish:
     if: >
       github.event.head_commit.author.username == 'github-actions[bot]' && github.event.head_commit.author.email == '41898282+github-actions[bot]@users.noreply.github.com'
     runs-on: ubuntu-latest
@@ -14,5 +20,6 @@ jobs:
         with:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
+      - run: npm install -g npm@latest
       - run: npm install
       - run: npm publish --access public
