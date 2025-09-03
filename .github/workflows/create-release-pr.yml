@@ -20,3 +20,4 @@ jobs:
           # for more options
           release-type: node
           skip-github-release: true
+          skip-labeling: true
