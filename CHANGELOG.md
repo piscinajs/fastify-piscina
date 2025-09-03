@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.2](https://github.com/piscinajs/fastify-piscina/compare/v6.0.1...v6.0.2) (2025-09-03)
+
+
+### Bug Fixes
+
+* add provenance ([95e66b4](https://github.com/piscinajs/fastify-piscina/commit/95e66b467f4df179a45a01c5baf3a88a32cc79a2))
+
 ## [6.0.1](https://github.com/piscinajs/fastify-piscina/compare/v6.0.0...v6.0.1) (2025-08-28)
 
 
