@@ -6,7 +6,7 @@
 const fastify = require('fastify')();
 const { resolve} = require('path');
 
-fastify.register(require('fastify-piscina'), {
+fastify.register(require('@piscina/fastify'), {
   // Piscina Options object. See Piscina docs for details
   filename: resolve(__dirname, 'worker.js')
 });
