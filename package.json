@@ -12,10 +12,8 @@
   "scripts": {
     "lint": "standardx \"**/*.{mjs,js,cjs}\" | snazzy",
     "lint:fix": "standardx --fix",
-    "test": "tap -J test/*.test.{js,mjs}",
-    "test:coverage": "tap -J test/*.test.{js,mjs} --cov --coverage-report=html --no-browser --no-check-coverage",
-    "test:verbose": "npm run unit -- -Rspec",
-    "test:ci": "npm run test:coverage && npm run test:typescript",
+    "test": "node --test test/*.test.js test/*.test.mjs",
+    "test:ci": "npm run test && npm run test:typescript",
     "test:typescript": "tsd"
   },
   "repository": {
@@ -38,7 +36,6 @@
     "fastify": "^5.0.0",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",
-    "tap": "^15.1.5",
     "tsd": "^0.33.0"
   },
   "dependencies": {
